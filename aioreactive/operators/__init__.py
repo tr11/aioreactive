@@ -1,5 +1,6 @@
 from . import pipe as op
 
+from .catch_exception import catch_exception
 from .concat import concat
 from .debounce import debounce
 from .delay import delay

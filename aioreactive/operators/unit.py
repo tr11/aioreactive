@@ -57,7 +57,6 @@ class Unit(AsyncObservable):
         # Check if plain value or Future (async value)
         if hasattr(self._value, "add_done_callback"):
             self._value.add_done_callback(done_callback)
-
         else:
             asyncio.ensure_future(worker(self._value))
 

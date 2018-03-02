@@ -26,12 +26,12 @@ class FromAsyncIterable(AsyncObservable, Generic[T]):
         sub = AsyncDisposable(cancel)
 
         async def worker() -> None:
-            async for value in self.iterable:
-                try:
+            try:
+                async for value in self.iterable:
                     await observer.asend(value)
-                except Exception as ex:
-                    await observer.athrow(ex)
-                    return
+            except Exception as ex:
+                await observer.athrow(ex)
+                return
 
             await observer.aclose()
         try:
